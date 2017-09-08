@@ -20,8 +20,16 @@ let g:piecrumbs_auto = get(g:, 'piecrumbs_auto', 1)
 let g:piecrumbs_show_signatures = get(g:, 'piecrumbs_show_signatures', 1)
 
 ""
-" String to use as glue for breadcrumbs. Defaults to ''.
-let g:piecrumbs_glue = get(g:, 'piecrumbs_glue', '')
+" String to use as glue for breadcrumbs. Defaults to ' :: '.
+let g:piecrumbs_glue = get(g:, 'piecrumbs_glue', ' :: ')
+
+function! PieCrumbsPrintTrimmed(width, text)
+    if len(text) > width
+        let text = text[:len(text) - width - 2] . '~'
+    endif
+    echon text
+    return width - len(text)
+endfunction
 
 ""
 " Renders breadcrumbs using echo command.
@@ -37,6 +45,7 @@ function! PieCrumbs()
     let lineno = getpos('.')[1]
     let lineno_initial = lineno
     let min_indent = -1
+    let remaining = winwidth(0)
     while lineno <= line_count
         let min_indent = match(getline(lineno), '\S')
         if min_indent != -1
@@ -66,16 +75,16 @@ function! PieCrumbs()
             let is_first = 0
         else
             echohl Number
-            echon '  '
+            let remaining = PieCrumbsPrintTrimmed(remaining, g:piecrumbs_glue)
         endif
         if part[0] ==  'def'
             echohl Function
         elseif part[0] == 'class'
             echohl Keyword
         endif
-        echon part[1]
+        let remaining = PieCrumbsPrintTrimmed(remaining, part[1])
         echohl Normal
-        echon part[2]
+        let remaining = PieCrumbsPrintTrimmed(remaining, part[2])
     endfor
 endfunction
 
