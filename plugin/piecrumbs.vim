@@ -69,6 +69,9 @@ function! PieCrumbs()
         endif
         let lineno = lineno - 1
     endwhile
+    if len(path) == 0
+        return
+    endif
     call reverse(path)
     echo ''
     let is_first = 1
