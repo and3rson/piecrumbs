@@ -24,11 +24,11 @@ let g:piecrumbs_show_signatures = get(g:, 'piecrumbs_show_signatures', 1)
 let g:piecrumbs_glue = get(g:, 'piecrumbs_glue', ' :: ')
 
 function! PieCrumbsPrintTrimmed(width, text)
-    if len(text) > width
-        let text = text[:len(text) - width - 2] . '~'
+    if len(a:text) > a:width
+        let a:text = a:text[:len(a:text) - a:width - 2] . '~'
     endif
-    echon text
-    return width - len(text)
+    echon a:text
+    return a:width - len(a:text)
 endfunction
 
 ""
