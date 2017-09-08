@@ -1,0 +1,7 @@
+{
+  "name": "piecrumbs",
+  "description": "Displays current location in Python classes/methods.",
+  "author": "Andrew Dunai <a@dun.ai>",
+  "dependencies": {
+  }
+}
