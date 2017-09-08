@@ -20,8 +20,8 @@ let g:piecrumbs_auto = get(g:, 'piecrumbs_auto', 1)
 let g:piecrumbs_show_signatures = get(g:, 'piecrumbs_show_signatures', 1)
 
 ""
-" String to use as glue for breadcrumbs. Defaults to ''.
-let g:piecrumbs_glue = get(g:, 'piecrumbs_glue', '')
+" String to use as glue for breadcrumbs. Defaults to ' :: '.
+let g:piecrumbs_glue = get(g:, 'piecrumbs_glue', ' :: ')
 
 ""
 " Renders breadcrumbs using echo command.
@@ -66,7 +66,7 @@ function! PieCrumbs()
             let is_first = 0
         else
             echohl Number
-            echon '  '
+            echon g:piecrumbs_glue
         endif
         if part[0] ==  'def'
             echohl Function
