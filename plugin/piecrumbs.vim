@@ -25,10 +25,12 @@ let g:piecrumbs_glue = get(g:, 'piecrumbs_glue', ' :: ')
 
 function! PieCrumbsPrintTrimmed(width, text)
     if len(a:text) > a:width
-        let a:text = a:text[:len(a:text) - a:width - 2] . '~'
+        let text = a:text[:len(a:text) - a:width - 2] . '~'
+    else
+        let text = a:text
     endif
-    echon a:text
-    return a:width - len(a:text)
+    echon text
+    return a:width - len(text)
 endfunction
 
 ""
