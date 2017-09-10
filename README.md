@@ -2,6 +2,8 @@
 
 Displays current location in Python classes/methods.
 
+![Screenshot](piecrumbs.png)
+
 # INTRO
 
 This plugin displays a colored breadcrumbs string under statusline using echo command. I wanted a lightweight plugin for this so I decided to write my own.
